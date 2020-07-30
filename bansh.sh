@@ -5,7 +5,7 @@ t=0
 # width (cols)
 w=64
 # sleep time after each line
-s=0.05
+s=0.1
 
 # default expression
 expression='b=$(( t>>6^t%64 ))'

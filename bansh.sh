@@ -9,6 +9,8 @@ comando(){
 	[ "${expresion}" == "q" ] && exit
 }
 
+trap 'comando' INT
+
 while true
 do
 
@@ -22,5 +24,4 @@ do
 
 	[ $((t%w)) -eq 0 ] && printf "\n"
 
-	trap 'comando' INT
 done

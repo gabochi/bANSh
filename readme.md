@@ -1,6 +1,6 @@
 # bANSh
 
-Because the world always need more bash, more bytebeat, more escape sequences.
+Because the world always need more bash, more bytebeat, more escape sequences, more ephemeral digital art.
 
 # Use
 

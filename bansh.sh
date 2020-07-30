@@ -1,27 +1,35 @@
 #!/bin/bash
 
-t=0; w=64; s=0
-expresion='b=$(( t>>6^t%64 ))'
+# init time
+t=0
+# width (cols)
+w=64
+# sleep time after each line
+s=0.05
 
-comando(){
-	printf "\033[48;5;0m\ntype another expression (q for exit):\n"
-	read -e -i "${expresion}" expresion
-	[ "${expresion}" == "q" ] && exit
+# default expression
+expression='b=$(( t>>6^t%64 ))'
+
+edit_expression(){
+	printf "\033[48;5;0m\ntype another expression ('q' anywhere will exit):\n"
+	read -e -i "${expression}" expression
+	[[ "${expression}" == *"q"* ]] && exit
 }
 
-trap 'comando' INT
+# interrupt calls function
+trap 'edit_expression' INT
+
+# main loop . . .
 
 while true
 do
 
 	t=$((t+1))
-	eval ${expresion}
+	eval ${expression}
 	b=$((b%256))
 
 	printf "\033[48;5;${b}m "
 
-	[ ${s} -eq 1 ] && sleep 0
-
-	[ $((t%w)) -eq 0 ] && printf "\n"
+	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s}
 
 done

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-t=0
-w=64
-expresion='b=$(( t<<2 ))'
+t=0; w=64; s=0
+expresion='b=$(( t>>6^t%64 ))'
 
 comando(){
 	printf "\033[48;5;0m\ntype another expression (q for exit):\n"
@@ -19,7 +18,9 @@ do
 
 	printf "\033[48;5;${b}m "
 
-	if [ $((t%w)) -eq 0 ]; then printf "\n"; fi
+	[ ${s} -eq 1 ] && sleep 0
+
+	[ $((t%w)) -eq 0 ] && printf "\n"
 
 	trap 'comando' INT
 done

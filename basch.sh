@@ -11,7 +11,8 @@ s=0.1
 expression='b=$(( (t*t >>10 &2)*(t>>7) ))'
 
 edit_expression(){
-	printf "\033[48;5;0m\ntype another expression ('q' anywhere will exit):\n"
+#	printf "\033[48;5;0m\ntype another expression ('q' anywhere will exit):\n"
+	printf "\ntype another expression ('q' anywhere will exit):\n"
 	read -e -i "${expression}" expression
 	[[ "${expression}" == *"q"* ]] && exit
 }

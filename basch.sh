@@ -25,15 +25,16 @@ trap 'edit_expression' INT
 while true
 do
 
-	t=$((t+1))
+	((t+=1))
 	eval ${expression}
 
 #	b=$((b%256))
 #	printf "\033[48;5;${b}m"
 
 
-	b=$((b%64+32))
+	((b=b%64+32))
 	printf "\\$(printf %o ${b})"
+#	printf "\x${b}"
 
 	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s}
 

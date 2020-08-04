@@ -8,12 +8,12 @@ w=2
 s=0.1
 
 # default expression
-expression='b=$(( (t*t >>10 &2)*(t>>7) ))'
+expression='t* t>>10 &3'
 
 edit_expression(){
-#	printf "\033[48;5;0m\ntype another expression ('q' anywhere will exit):\n"
-	printf "\ntype another expression ('q' anywhere will exit):\n"
+	printf "\n\e[7mtype another expression ('q' anywhere will exit):\n"
 	read -e -i "${expression}" expression
+	printf "\e[0m"
 	[[ "${expression}" == *"q"* ]] && exit
 }
 
@@ -26,15 +26,11 @@ while true
 do
 
 	((t+=1))
-	eval ${expression}
+	((b=$((${expression}))))
 
-#	b=$((b%256))
-#	printf "\033[48;5;${b}m"
+	[ "${1}" == "-c" ] && printf "\033[38;5;$((b&255))m"
 
-
-	((b=b%64+32))
-	printf "\\$(printf %o ${b})"
-#	printf "\x${b}"
+	printf "\x$((b&63|20))"
 
 	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
 

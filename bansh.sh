@@ -8,7 +8,7 @@ w=2
 s=0.1
 
 # default expression
-expression='b=$(( t>>6 ^ t&63 | 16 ))'
+expression='t>>6 ^ t&63 | 16'
 
 # edit function
 edit_expression(){
@@ -26,10 +26,9 @@ while true
 do
 
 	((t+=1))
-	eval ${expression}
-	((b=b%256))
+	((b=$((${expression}))))
 
-	printf "\033[48;5;${b}m "
+	printf "\033[48;5;$((b&255))m "
 
 	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
 

@@ -3,7 +3,7 @@
 # init time
 t=0
 # width (cols)
-w=64
+w=2
 # sleep time after each line
 s=0.1
 
@@ -36,6 +36,6 @@ do
 	printf "\\$(printf %o ${b})"
 #	printf "\x${b}"
 
-	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s}
+	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
 
 done

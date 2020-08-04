@@ -2,14 +2,15 @@
 
 # init time
 t=0
-# width (cols)
-w=64
+# init width
+w=2
 # sleep time after each line
 s=0.1
 
 # default expression
-expression='b=$(( t>>6^t%64 ))'
+expression='b=$(( t>>6 ^ t&63 | 16 ))'
 
+# edit function
 edit_expression(){
 	printf "\033[48;5;0m\ntype another expression ('q' anywhere will exit):\n"
 	read -e -i "${expression}" expression
@@ -30,6 +31,6 @@ do
 
 	printf "\033[48;5;${b}m "
 
-	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s}
+	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
 
 done

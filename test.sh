@@ -9,9 +9,10 @@ read -e -i "${expresion}" expresion
 
 for i in {0..63}
 do
-	((t=t+1))
 	((o=$((${expresion}))))
 	printf "${o}; "
+	((t=t+1))
+
 done
 
 done

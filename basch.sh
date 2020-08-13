@@ -8,7 +8,7 @@ w=2
 s=0.1
 
 # default expression
-expression='t* t>>10 &3'
+expression='t * t >>10 | 61'
 
 edit_expression(){
 	printf "\n\e[7mtype another expression ('q' anywhere will exit):\n"
@@ -30,7 +30,12 @@ do
 
 	[ "${1}" == "-c" ] && printf "\033[38;5;$((b&255))m"
 
-	printf "\x$((b&63|20))"
+	# old :	printf "\x$((b&63|20))"
+
+	# new, map to valid char, convert to hex value for \x
+	h=$(printf "%x" $(( (b&63)+63 )) )
+
+	printf "\x${h}"
 
 	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
 

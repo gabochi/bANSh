@@ -5,6 +5,7 @@ expresion='t'
 while true
 do
 
+printf "\n"
 read -e -i "${expresion}" expresion
 
 for i in {0..63}

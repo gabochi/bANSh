@@ -12,7 +12,7 @@ The number of columns is automatically adjusted in concordance with the terminal
 
 # test.sh
 
-There is a third script that evaluates expressions in blocks of 64 returning the numerical results in order to practice and learn about expressions behaviour.
+There is a third script that evaluates expressions in blocks of 64 returning the numerical results in order to practice and learn about expressions behavior.
 
 # Tweak
 

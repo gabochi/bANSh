@@ -30,6 +30,6 @@ do
 
 	printf "\033[48;5;$((b&255))m "
 
-	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(tput cols)
+	[ $((t%w)) -eq 0 ] && printf "\n" && [ "${s}" != "0" ] && sleep ${s} && w=$(echo "c=l($(tput cols))/l(2);scale=0;2^(c/1)" | bc -l)
 
 done

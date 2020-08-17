@@ -6,9 +6,9 @@ Because the world always need more bash, more bytebeat, more escape sequences, m
 
 There are two main scripts, **bansh.sh** prints 8-bit colored blocks (spaces with bg color) and **basch.sh** prints 'ASCII' characters with the current color configuration of your terminal by default (run `./basch.sh -c` for color).
 
-Both have a default expression that's evaluated at start, press **CTRL+C** to edit the expression. Writing a `q` anywhere in the expression will quit the program.
+Both have a default expression that's evaluated at start, press **CTRL+C** to edit the expression. Writing a `q` anywhere in the expression will quit the program. You can also assign an initial expression to any script like `./bansh.sh "t*t>>10"`. In the case of `basch.sh`, when using color mode, the expression should be after the `-c` parameter like this: `./basch.sh -c "t>>((t>>6)&7)&1"`.
 
-The number of columns is automatically adjusted in concordance with the terminal configuration, therefore, I recommend to set the number of columns in powers of two (64, 128, 256, 512, 1024, etc.) for better results.
+The number of columns is automatically adjusted to powers of two in concordance with the terminal resolution status.
 
 # test.sh
 

@@ -6,9 +6,19 @@ t=0
 w=2
 # sleep time after each line
 s=0.1
+#
+color=0
 
 # default expression
-expression='t * t >>10 | 61'
+case ${1} in
+	"-c" )
+	color=1
+	expression=${2:-'t * t >>10 | 61'}
+	;;
+	* )
+	expression=${1:-'t * t >>10 | 61'}
+	;;
+esac
 
 edit_expression(){
 	printf "\n\e[7mtype another expression ('q' anywhere will exit):\n"
@@ -28,7 +38,7 @@ do
 	((t+=1))
 	((b=$((${expression}))))
 
-	[ "${1}" == "-c" ] && printf "\033[38;5;$((b&255))m"
+	[ ${color} -eq 1 ] && printf "\033[38;5;$((b&255))m"
 
 	# old :	printf "\x$((b&63|20))"
 

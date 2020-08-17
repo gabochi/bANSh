@@ -8,7 +8,7 @@ w=2
 s=0.1
 
 # default expression
-expression='t>>6 ^ t&63 | 16'
+expression=${1:-'t>>6 ^ t&63 | 16'}
 
 # edit function
 edit_expression(){
